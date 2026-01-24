@@ -26,6 +26,7 @@ class ProductController extends Controller {
         // validação dos dados
         $validated = $request->validate([
             'name' => 'required|max:255',
+            'quantity' => 'required|integer',
             'price' => 'required|numeric',
         ]);
 
@@ -35,5 +36,15 @@ class ProductController extends Controller {
         return redirect()->route('products.index');
     }
 
-    
+    public function show($id) {
+        $produto = Product::find($id);
+
+        if (!$produto) {
+            return redirect()->route('products.index')->with('error', 'Produto não encontrado.');
+        }
+
+        return Inertia::render('Products/Product/{id}', [
+            'produto' => $produto
+        ]);
+    }
 }

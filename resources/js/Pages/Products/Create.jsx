@@ -1,5 +1,6 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
+import ProductForm from '@/Components/ProductForm';
 
 export default function ProductCreate() {
     return (
@@ -16,7 +17,7 @@ export default function ProductCreate() {
                 <div className='mx-auto max-w-7xl sm:px-6 lg:px-8'>
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
                         <div className="p-6 text-gray-900 dark:text-gray-100">
-                            Cadastro de Produtos!
+                            <ProductForm></ProductForm>
                         </div>
                     </div>
                 </div>
