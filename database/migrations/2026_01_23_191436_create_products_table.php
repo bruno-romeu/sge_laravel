@@ -15,7 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('quantity');
+            $table->integer('minimum_quantity')->default(5);
             $table->decimal('price', 10, 2);
+            $table->decimal('cost_price', 10, 2)->nullable();
+            $table->decimal('profit', 10, 2)->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
