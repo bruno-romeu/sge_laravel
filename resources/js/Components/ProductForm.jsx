@@ -2,7 +2,6 @@ import { Form, useForm, usePage} from "@inertiajs/react"
 import TextInput from "./TextInput"
 import PrimaryButton from "./PrimaryButton"
 import DangerButton from "./DangerButton"
-import Notification from "./Notification"
 
 export default function ProductForm({ product }) {
 
@@ -25,13 +24,6 @@ export default function ProductForm({ product }) {
         if (confirm('Tem certeza que deseja excluir este produto?')) {
             destroy(route('products.delete', product.id))
         }
-    }
-
-    const { flash } = usePage().props;
-    if (flash.success) {
-        return <Notification title={'Sucesso!'} message={'Produto cadastrado no estoque!'} />
-    } else if (flash.error) {
-        return <Notification title={'Erro'} message={'Ocorreu um erro ao cadastrar o produto.'}/>
     }
     
 
