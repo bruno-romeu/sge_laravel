@@ -1,7 +1,8 @@
-import { Form, useForm} from "@inertiajs/react"
+import { Form, useForm, usePage} from "@inertiajs/react"
 import TextInput from "./TextInput"
 import PrimaryButton from "./PrimaryButton"
 import DangerButton from "./DangerButton"
+import Notification from "./Notification"
 
 export default function ProductForm({ product }) {
 
@@ -25,6 +26,13 @@ export default function ProductForm({ product }) {
             destroy(route('products.delete', product.id))
         }
     }
+
+    const { flash } = usePage().props;
+    if (flash.success) {
+        return <Notification title={'Sucesso!'} message={'Produto cadastrado no estoque!'} />
+    } else if (flash.error) {
+        return <Notification title={'Erro'} message={'Ocorreu um erro ao cadastrar o produto.'}/>
+    }
     
 
     return (
@@ -47,9 +55,11 @@ export default function ProductForm({ product }) {
                     <button type="submit">
                         <PrimaryButton className="mt-4" disabled={processing}>{product ? 'Salvar Alterações' : 'Cadastrar Produto'}</PrimaryButton>
                     </button>
-                    <button type="button">
-                        {product.id && <DangerButton className="mt-4" disabled={processing} onClick={handleDelete}>Excluir Produto</DangerButton>}
-                    </button>
+                    {product && product.id &&(
+                        <div type="button">
+                            <DangerButton className="mt-4" disabled={processing} onClick={handleDelete}>Excluir Produto</DangerButton>
+                        </div>
+                    )}  
                 </div>
 
             </form>

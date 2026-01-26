@@ -41,6 +41,7 @@ export default function ProductsIndex({listaProdutos}) {
                         </div>
                     </div>
                     )))}
+
                 </div>
             </div>
         </AuthenticatedLayout>  

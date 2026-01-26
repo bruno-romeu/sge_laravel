@@ -34,7 +34,7 @@ class ProductController extends Controller {
         Product::create($validated);
         echo "Produdo cadastrado com sucesso!";
 
-        return redirect()->route('products.index');
+        return redirect()->route('products.index')->with('success', 'Produto cadastrado com sucesso!');
     }
 
     public function show($id) {
@@ -63,7 +63,7 @@ class ProductController extends Controller {
 
         $product->update($validated);
         echo "Produto atualizado com sucesso!";
-        return redirect()->route('products.index');
+        return redirect()->route('products.index')->with('success', 'Produto atualizado com sucesso!');
 
     }
 
@@ -75,7 +75,7 @@ class ProductController extends Controller {
 
         $product::destroy($id);
         echo "Produdo excluído com sucesso!";
-        return redirect()->route('products.index');
+        return redirect()->route('products.index')->with('success', 'Produto excluído com sucesso!');
 
     }
 }
