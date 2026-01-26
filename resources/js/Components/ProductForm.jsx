@@ -83,9 +83,11 @@ export default function ProductForm({ product }) {
                     <button type="submit">
                         <PrimaryButton className="mt-4" disabled={processing}>{product ? 'Salvar Alterações' : 'Cadastrar Produto'}</PrimaryButton>
                     </button>
-                    <button type="button">
-                        {data.id && <DangerButton className="mt-4" disabled={processing} onClick={handleDelete}>Excluir Produto</DangerButton>}
-                    </button>
+                    {product && product.id && (
+                    <div type="button">
+                        <DangerButton className="mt-4" disabled={processing} onClick={handleDelete}>Excluir Produto</DangerButton>
+                    </div>
+                    )}
                 </div>
 
             </form>
