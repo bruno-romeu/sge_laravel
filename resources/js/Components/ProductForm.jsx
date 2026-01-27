@@ -1,3 +1,4 @@
+
 import { Form, useForm} from "@inertiajs/react"
 import { useEffect } from 'react';
 import TextInput from "./TextInput"
@@ -83,11 +84,12 @@ export default function ProductForm({ product }) {
                     <button type="submit">
                         <PrimaryButton className="mt-4" disabled={processing}>{product ? 'Salvar Alterações' : 'Cadastrar Produto'}</PrimaryButton>
                     </button>
-                    {product && product.id && (
-                    <div type="button">
-                        <DangerButton className="mt-4" disabled={processing} onClick={handleDelete}>Excluir Produto</DangerButton>
-                    </div>
-                    )}
+                    {product && product.id &&(
+                        <div type="button">
+                            <DangerButton className="mt-4" disabled={processing} onClick={handleDelete}>Excluir Produto</DangerButton>
+                        </div>
+                    )}  
+
                 </div>
 
             </form>
