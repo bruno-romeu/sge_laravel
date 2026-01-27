@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Inventory;
+
 
 class Product extends Model
 {
@@ -21,4 +24,9 @@ class Product extends Model
         'cost_price' => 'decimal:2',
         'profit' => 'decimal:2',
     ];
+
+    public function inventories(): HasMany
+    {
+        return $this->hasMany(Inventory::class);
+    }
 }

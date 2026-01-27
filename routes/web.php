@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\InventoryController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -29,6 +30,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
     Route::put('/products/{id}', [ProductController::class, 'edit'])->name('products.update');
     Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+
+    Route::resource('inventory', InventoryController::class);
 });
 
 require __DIR__.'/auth.php';
