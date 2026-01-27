@@ -60,7 +60,7 @@ export default function ProductsIndex({listaProdutos}) {
                                         <p>Preço: R${produtos.price}</p>
                                     </div>
                                 </div>
-                                <button onClick={() => location.href='products/product/'+produtos.id}>
+                                <button onClick={() => location.href='products/'+produtos.id}>
                                     <div className="flex justify-end text-white hover:bg-gray-700 rounded-lg px-3 py-2 transition duration-150">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 ml-2">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />

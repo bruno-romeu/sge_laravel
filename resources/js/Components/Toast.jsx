@@ -11,12 +11,12 @@ export default function Toast({ message, type = 'success' }) {
     if (!show) return null;
 
     const colors = {
-        success: 'bg-green-500',
+        success: 'bg-green-600',
         error: 'bg-red-500',
     };
 
     return (
-        <div className={`fixed top-5 right-5 z-50 text-white px-4 py-3 rounded shadow ${colors[type]}`}>
+        <div className={`fixed bottom-5 right-5 z-50 text-white px-4 py-3 rounded shadow ${colors[type]}`}>
             {message}
         </div>
     );
