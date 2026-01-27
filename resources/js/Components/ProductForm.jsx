@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-import { Form, useForm, usePage} from "@inertiajs/react"
-=======
-import { Form, useForm} from "@inertiajs/react"
+import { useForm} from "@inertiajs/react"
 import { useEffect } from 'react';
->>>>>>> f00b6002c1ef6cc8b0714147665d91c5e87eb507
 import TextInput from "./TextInput"
 import PrimaryButton from "./PrimaryButton"
 import DangerButton from "./DangerButton"
@@ -87,19 +83,12 @@ export default function ProductForm({ product }) {
                     <button type="submit">
                         <PrimaryButton className="mt-4" disabled={processing}>{product ? 'Salvar Alterações' : 'Cadastrar Produto'}</PrimaryButton>
                     </button>
-<<<<<<< HEAD
                     {product && product.id &&(
                         <div type="button">
                             <DangerButton className="mt-4" disabled={processing} onClick={handleDelete}>Excluir Produto</DangerButton>
                         </div>
                     )}  
-=======
-                    {product && product.id && (
-                    <div type="button">
-                        <DangerButton className="mt-4" disabled={processing} onClick={handleDelete}>Excluir Produto</DangerButton>
-                    </div>
-                    )}
->>>>>>> f00b6002c1ef6cc8b0714147665d91c5e87eb507
+
                 </div>
 
             </form>
