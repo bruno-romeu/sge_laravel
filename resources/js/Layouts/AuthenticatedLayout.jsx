@@ -47,12 +47,6 @@ export default function AuthenticatedLayout({ header, children }) {
                                 >
                                     Produtos
                                 </NavLink>
-                                <NavLink
-                                    href={route('inventory.index')}
-                                    active={route().current('inventory.index')}
-                                >
-                                    Inventário
-                                </NavLink>
                             </div>
                         </div>
 

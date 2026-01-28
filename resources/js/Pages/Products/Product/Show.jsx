@@ -1,8 +1,10 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import ProductForm from '@/Components/ProductForm';
+import TimeLine from '@/Components/TimeLine';
 
-export default function ProductShow({product}) {
+export default function ProductShow({product, inventories}) {
+    console.log('DADOS DO PRODUTO:', product);
     return (
         <AuthenticatedLayout
             header={
@@ -23,6 +25,8 @@ export default function ProductShow({product}) {
                     </div>
                 </div>
             </div>
+
+            <TimeLine inventories={inventories}></TimeLine>
 
         </AuthenticatedLayout>
     )

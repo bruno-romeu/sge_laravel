@@ -2,8 +2,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Inventory;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\DB;
+
 
 class ProductController extends Controller {
     public function index() {
@@ -20,7 +23,6 @@ class ProductController extends Controller {
 
     public function store(Request $request) {
 
-        // validação dos dados
         $validated = $request->validate([
             'name' => 'required|max:255',
             'quantity' => 'required|integer',
@@ -41,10 +43,21 @@ class ProductController extends Controller {
             $validated['price'] = $validated['cost_price'] / (1 - ($validated['profit'] / 100));
         } 
 
-        if (!$validated) {
-            return with('error', 'Dados Inválidos. Tente novamente mais tarde.');
-        } else {
-            Product::create($validated);
+        
+        try {
+            DB::transaction(function() use ($validated) {
+                $new_product = Product::create($validated);
+
+                $new_product->inventories()->create([
+                    'quantity'=>$validated['quantity'],
+                    'type'=>'addition',
+                    'description'=> 'Inclusão manual via cadastro de produto no SGE.'
+                ]);
+                        
+            
+            });
+        }catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Ocorreu um erro ao registrar o produto no estoque. Tente Novamente mais tarde. Erro: ' . $e->getMessage());
         }
         
 
@@ -52,14 +65,22 @@ class ProductController extends Controller {
     }
 
     public function show($id) {
-        $product = Product::find($id);
+        $product = Product::with('inventories')->findOrFail($id);
 
         if (!$product) {
             return redirect()->route('products.index')->with('error', 'Produto não encontrado.');
         }
 
         return Inertia::render('Products/Product/Show', [
-            'product' => $product
+            'product' => $product,
+            'inventories' => $product->inventories->map(fn ($item) => [
+                'id' => $item->id,
+                'quantity' => $item->quantity,
+                'type' => $item->type->value,
+                'type_label' => $item->type->label(),
+                'description' => $item->description,
+                'created_at' => $item->created_at->format('d/m/Y H:i'),
+            ]),
         ]);
     }
 

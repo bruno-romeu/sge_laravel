@@ -4,7 +4,7 @@ export default function Toast({ message, type = 'success' }) {
     const [show, setShow] = useState(true);
 
     useEffect(() => {
-        const timer = setTimeout(() => setShow(false), 3000);
+        const timer = setTimeout(() => setShow(false), 10000);
         return () => clearTimeout(timer);
     }, []);
 

@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreignIdFor(Product::class)->constrained()->onDelete('cascade');
             $table->integer('quantity');
             $table->enum('type', ['addition', 'removal']);
-            $table->timestampTz('date', precision: 0);
             $table->text('description')->nullable();
             $table->timestamps();
         });
