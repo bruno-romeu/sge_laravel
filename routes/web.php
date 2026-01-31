@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/products/{id}', [ProductController::class, 'edit'])->name('products.update');
     Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
 
-    Route::resource('inventory', InventoryController::class);
+    Route::post('/inventory', [InventoryController::class, 'store'])->name('inventory.store');
 });
 
 require __DIR__.'/auth.php';

@@ -7,6 +7,8 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Enums\InventoryType;
+use Illuminate\Validation\Rule;
+use App\Enums\StatusEnum;
 
 
 class InventoryController extends Controller
@@ -14,7 +16,7 @@ class InventoryController extends Controller
 
     public function index()
     {
-       
+       //
     }
 
 
@@ -34,6 +36,7 @@ class InventoryController extends Controller
             'description' => 'string|max:1000',
         ]);
         $product_quantity = Product::find($validated['product_id'])->quantity;
+        $product = Product::find($validated['product_id']);
 
         if ($validated['type'] === 'removal' && $product_quantity < $validated['quantity']) {
             return redirect()->back()->with('error', 'A quantidade a ser removida excede o estoque disponível.');
@@ -41,12 +44,16 @@ class InventoryController extends Controller
 
         try {
             DB::transaction(function() use ($validated, $product) {
+                $type = InventoryType::from($validated['type']);
                 Inventory::create([
                     ...$validated,
                     'type' => $validated['type'],
                     ]);
 
-                    match ($validated['type']) {
+                    
+
+
+                    match ($type) {
                         InventoryType::Addition =>
                             $product->increment('quantity', $validated['quantity']),
 
