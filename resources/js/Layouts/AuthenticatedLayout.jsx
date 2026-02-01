@@ -8,7 +8,8 @@ import { useState } from 'react';
 
 export default function AuthenticatedLayout({ header, children }) {
     const user = usePage().props.auth.user;
-    const { flash } = usePage().props;
+    const { flash, hasLowStock } = usePage().props;
+    
 
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
@@ -22,6 +23,14 @@ export default function AuthenticatedLayout({ header, children }) {
 
             {flash?.error && (
                 <Toast type="error" message={flash.error} />
+            )}
+
+            {flash?.alert && route().current('products.index') && (
+                <Toast type='alert' message={flash.alert}/>
+            )}
+
+            {hasLowStock && (
+                <Toast type='alert' message='Existem produtos com o estoque baixo.'/>
             )}
 
             <nav className="border-b border-gray-100 bg-white dark:border-gray-700 dark:bg-gray-800">

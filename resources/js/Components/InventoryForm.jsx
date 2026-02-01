@@ -28,7 +28,7 @@ export default function InventoryForm({product, inventory, onSuccess, onCancel})
     };
 
     return (
-        <div className="flex flex-col text-center p-10 text-white">
+        <div className="flex flex-col text-center p-10 dark:text-white">
             <form onSubmit={submit}>
                 <div className="flex flex-row gap-20">
                     <div className="flex flex-col w-20">

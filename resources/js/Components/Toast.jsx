@@ -4,7 +4,7 @@ export default function Toast({ message, type = 'success' }) {
     const [show, setShow] = useState(true);
 
     useEffect(() => {
-        const timer = setTimeout(() => setShow(false), 10000);
+        const timer = setTimeout(() => setShow(false), 6000);
         return () => clearTimeout(timer);
     }, []);
 
@@ -13,6 +13,7 @@ export default function Toast({ message, type = 'success' }) {
     const colors = {
         success: 'bg-green-600',
         error: 'bg-red-500',
+        alert: 'bg-yellow-500',
     };
 
     return (

@@ -2,19 +2,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Models\Inventory;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\DB;
 
-
 class ProductController extends Controller {
     public function index() {
         $produtos = Product::all();
+        $hasLowStock = Product::whereColumn('quantity', '<=', 'minimum_quantity')->exists();
 
         return Inertia::render('Products/Index', [
-            'listaProdutos' => $produtos
+            'listaProdutos' => $produtos,
+            'hasLowStock' => $hasLowStock
         ]);
+
     }
 
     public function create() {
