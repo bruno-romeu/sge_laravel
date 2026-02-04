@@ -2,6 +2,8 @@
 
 > **SGE Laravel** é um projeto de estudo desenvolvido com **Laravel**, **Inertia.js** e **React**, com o objetivo de aplicar e consolidar conceitos de uma aplicação full-stack moderna utilizando o ecossistema Laravel com frontend reativo.
 
+<img src="public/images/image.png" width="500" height="300" alt="Preview do SGE Laravel">
+
 ---
 
 ## 🧠 Sobre o projeto
@@ -32,9 +34,16 @@ A aplicação segue o padrão de SPA (Single Page Application), mantendo a produ
 
 - Autenticação de usuários
 - Layout autenticado com navegação
-- CRUD de entidades
+- CRUD de produtos
 - Validação de formulários
 - Mensagens de sucesso e erro via *flash messages*
 - Componentes React reutilizáveis
 - Confirmação de ações críticas via modal
+- Dashboard com KPIs (itens totais, valor em estoque e produtos com baixo estoque)
+- Lista de produtos com estoque baixo no dashboard
+- Alerta automático de estoque baixo (toast)
+- Movimentações de estoque (entrada/saída) com validação de saldo
+- Linha do tempo de movimentações por produto
+- Cálculo automático de preço, custo e margem de lucro
+- Registro inicial de estoque ao cadastrar produto
 
