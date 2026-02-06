@@ -1,5 +1,5 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 
 export default function Dashboard({kpis, low_stock_products}) {
     return (
@@ -49,18 +49,17 @@ export default function Dashboard({kpis, low_stock_products}) {
                                     <hr className='border-gray-100 my-4 opacity-50'/>
                                     {low_stock_products.map((produto => {
                                         return(
-                                        <div key={produto.id} className="p-4 mb-2 hover:bg-red-100 dark:hover:bg-red-900 rounded-md flex items-center ">
-                                            <div>
-                                                <h3 className='capitalize text-md'>{produto.name}</h3>
-                                                <p>Estoque Atual: <span className='font-bold'>{produto.quantity}</span> | Estoque Mínimo: <span className='font-bold'>{produto.minimum_quantity}</span></p>
-                                            </div>
-
-                                            <svg className='ml-auto w-6 h-6 text-gray-800 dark:text-white items-center' aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 16 4-4-4-4m6 8 4-4-4-4"/>
-                                            </svg>
-
-
-                                        </div>
+                                            <Link href={'products/' + produto.id}>
+                                                <div key={produto.id} className="p-4 mb-2 hover:bg-red-100 dark:hover:bg-red-900 rounded-md flex items-center ">
+                                                    <div>
+                                                        <h3 className='capitalize text-md'>{produto.name}</h3>
+                                                        <p>Estoque Atual: <span className='font-bold'>{produto.quantity}</span> | Estoque Mínimo: <span className='font-bold'>{produto.minimum_quantity}</span></p>
+                                                    </div>
+                                                    <svg className='ml-auto w-6 h-6 text-gray-800 dark:text-white items-center' aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 16 4-4-4-4m6 8 4-4-4-4"/>
+                                                    </svg>
+                                                </div>
+                                            </Link>
                                         
                                         )
                                     }))}
@@ -70,12 +69,14 @@ export default function Dashboard({kpis, low_stock_products}) {
                             
                         </div>
                         {kpis.low_stock_quantity > 5 && (
-                        <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800 right-0 flex items-center justify-center p-8 gap-5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors">
-                                <p className='dark:text-white font-semibold'>Consulte o restante dos produtos abaixo do estoque</p>
-                                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 7 4 4 4-4m-8 6 4 4 4-4"/>
-                                </svg>
-                        </div>
+                            <Link href={route('products.index')}>
+                                <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800 right-0 flex items-center justify-center p-8 gap-5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors">
+                                        <p className='dark:text-white font-semibold'>Consulte o restante dos produtos abaixo do estoque</p>
+                                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 7 4 4 4-4m-8 6 4 4 4-4"/>
+                                        </svg>
+                                </div>
+                            </Link>
                         )}
                     </section>
                 </div>
